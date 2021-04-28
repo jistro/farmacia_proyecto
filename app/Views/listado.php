@@ -42,7 +42,7 @@
             </div>
         </div>
         <hr>
-        <h2>Lista de medicamentos</h2>
+        <h2>Lista de personas</h2>
         <div class="row">
             <div class="col-sm-12">
                 <div class="table table-responsive">
