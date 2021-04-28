@@ -1,3 +1,11 @@
+<?php
+     $codigoBarras =$datos[0]['CODIGO_DE_BARRAS'];
+    $nombre       =$datos[0]['NOMBRE_MEDICAMENTO'];
+    $activo       =$datos[0]['ACTIVO'];
+    $tipo         =$datos[0]['TIPO_MEDICAMENTO'];
+    $descripcion  =$datos[0]['DESCRIPCION'];
+    $stock        =$datos[0]['STOCK_DISPONIBLE'];
+?>
 <!doctype html>
 <html lang="es">
   <head>
@@ -8,51 +16,39 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Registro de stock</title>
+    <title>Actualizando datos</title>
   </head>
   <body>
     <div class="container">
-        <h1>Surtir receta</h1>
-        <hr>
-        <h2>Lista de personas</h2>
+        <h1><?php echo 'Hay '.$stock.' disponibles de'.$nombre; ?></h1>
         <div class="row">
             <div class="col-sm-12">
-                <div class="table table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Codigo de barras</th>
-                                <th>Nombre del medicamento</th>
-                                <th>Activo</th>
-                                <th>Tipo</th>
-                                <th>Descripcion</th>
-                                <th>Stock disponible</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            <?php foreach($datos as $key):?>
-                                <tr>
-                                    <th><?php echo $key-> CODIGO_DE_BARRAS      ?></th>
-                                    <th><?php echo $key-> NOMBRE_MEDICAMENTO    ?></th>
-                                    <th><?php echo $key-> ACTIVO                ?></th>
-                                    <th><?php echo $key-> TIPO_MEDICAMENTO      ?></th>
-                                    <th><?php echo $key-> DESCRIPCION           ?></th>
-                                    <th><?php echo $key-> STOCK_DISPONIBLE      ?></th>
-                                    <th>
-                                        <a href="<?php echo site_url('/obtenerDatos').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-warning btn-sm">Editar</a>
-                                    </th>
-                                    <th>
-                                        <a href="<?php echo site_url('/eliminar').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-danger btn-sm">Eliminar</a>
-                                    </th>
-                                </tr>
-                            <?php endforeach; ?>
-                        </thead>
-                    </table>
-                </div>
+                <form method="POST" action="<?php echo site_url('/surtir')?>">
+                    <input type="text" id="CODIGO_DE_BARRAS" name="CODIGO_DE_BARRAS" hidden="" 
+                    value="<?php echo $codigoBarras; ?>">
+                    <input type="text" id="NOMBRE_MEDICAMENTO" name="NOMBRE_MEDICAMENTO" hidden="" 
+                    value="<?php echo $nombre; ?>">
+                    <input type="text" id="ACTIVO" name="ACTIVO" hidden="" 
+                    value="<?php echo $activo; ?>">
+                    <input type="text" id="TIPO_MEDICAMENTO" name="TIPO_MEDICAMENTO" hidden="" 
+                    value="<?php echo $tipo; ?>">
+                    <input type="text" id="DESCRIPCIONS" name="DESCRIPCION" hidden="" 
+                    value="<?php echo $descripcion; ?>">
+                    <input type="text" id="STOCK_DISPONIBLE" name="STOCK_DISPONIBLE" hidden="" 
+                    value="<?php echo $stock; ?>">
+                    
+                    <!-- medicamento -->
+                    <label for="Cantidad"></label>
+                    <input type="number" name="Cantidad" id="Cantidad" class="form-control" 
+                    value="<?php echo 'Hay '.$stock.' disponibles'; ?>">
+                    <br>
+                    <button class="btn btn-warning">Guardar</button>
+                </form>
             </div>
         </div>
     </div>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

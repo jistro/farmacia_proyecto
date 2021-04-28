@@ -35,9 +35,11 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Crud::index');
 $routes->get('/obtenerDatos/(:any)', 'Crud::obtenerDatos/$1');
 $routes->get('/eliminar/(:any)', 'Crud::eliminar/$1');
+$routes->get('/surtir_med/(:any)', 'Crud::surtir_med/$1');
 $routes->post('/crear', 'Crud::crear');
 $routes->post('/actualizar', 'Crud::actualizar');
 $routes->post('/surtir', 'Crud::surtir');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

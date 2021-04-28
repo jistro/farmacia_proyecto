@@ -62,6 +62,53 @@ class Crud extends BaseController
 		}
 	}
 
+	public function surtir()
+	{
+		if (($_POST['Cantidad'])<=0)
+		{
+			return redirect()->to(base_url().'/')->with('mensaje','10');
+		}
+		if (($_POST['STOCK_DISPONIBLE']-$_POST['Cantidad'])>0)
+		{
+			$datos=	[
+				"NOMBRE_MEDICAMENTO"	=>$_POST['NOMBRE_MEDICAMENTO'],
+				"ACTIVO"       			=>$_POST['ACTIVO'],
+				"TIPO_MEDICAMENTO"      =>$_POST['TIPO_MEDICAMENTO'],
+				"DESCRIPCION"  			=>$_POST['DESCRIPCION'],
+				"STOCK_DISPONIBLE"      =>$_POST['STOCK_DISPONIBLE']-$_POST['Cantidad']
+			];	
+			$idDato= $_POST['CODIGO_DE_BARRAS'];
+			$Crud = new CrudModel();
+			$respuesta = $Crud->actualizar($datos,$idDato);
+			if ($respuesta)
+			{
+				return redirect()->to(base_url().'/')->with('mensaje','6');
+			}
+			else
+			{
+				return redirect()->to(base_url().'/')->with('mensaje','7');
+			}
+		}
+		else if (($_POST['STOCK_DISPONIBLE']-$_POST['Cantidad'])==0)
+		{
+			$Crud= new CrudModel();
+			$data= ["CODIGO_DE_BARRAS"=>$_POST['CODIGO_DE_BARRAS']];
+			$respuesta = $Crud->eliminar($data);
+			if ($respuesta)
+			{
+				return redirect()->to(base_url().'/')->with('mensaje','8');
+			}
+			else
+			{
+				return redirect()->to(base_url().'/')->with('mensaje','7');
+			}
+		}
+		else if (($_POST['Cantidad'])>$_POST['STOCK_DISPONIBLE'])
+		{
+			return redirect()->to(base_url().'/')->with('mensaje','9');
+		}
+	}
+
 
 	public function obtenerDatos($idDatos)
 	{
@@ -70,6 +117,14 @@ class Crud extends BaseController
 		$respuesta= $Crud->ObtenerDato($data);
 		$datos=["datos"=>$respuesta];
 		return view('actualizar',$datos);
+	}
+	public function surtir_med($idDatos)
+	{
+		$data=["CODIGO_DE_BARRAS"=>$idDatos];
+		$Crud= new CrudModel();
+		$respuesta= $Crud->ObtenerDato($data);
+		$datos=["datos"=>$respuesta];
+		return view('surtir',$datos);
 	}
 
 	public function eliminar($idDato)
@@ -87,5 +142,7 @@ class Crud extends BaseController
 		}
 
 	}
+
+	
 
 }

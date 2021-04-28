@@ -55,8 +55,6 @@
                                 <th>Tipo</th>
                                 <th>Descripcion</th>
                                 <th>Stock disponible</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
                             </tr>
                             <?php foreach($datos as $key):?>
                                 <tr>
@@ -71,6 +69,9 @@
                                     </th>
                                     <th>
                                         <a href="<?php echo site_url('/eliminar').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-danger btn-sm">Eliminar</a>
+                                    </th>
+                                    <th>
+                                        <a href="<?php echo site_url('/surtir_med').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-primary btn-sm">Surtir</a>
                                     </th>
                                 </tr>
                             <?php endforeach; ?>
@@ -112,6 +113,27 @@
         {
             swal('Ehhh, esto es incomodo...','Fallo al borrar','error');
         }
+        else if (mensaje == '6')
+        {
+            swal('Listo.','Se ha modificado la cantidad de stock','success');
+        }
+        else if (mensaje == '7')
+        {
+            swal('Ehhh, esto es incomodo...','Fallo al modificar el stock','error');
+        }
+        else if (mensaje == '8')
+        {
+            swal('Y... ya no hay nada','Se acabo el stock del producto','error');
+        }
+        else if (mensaje == '9')
+        {
+            swal('Checa bien tus datos','Estas solicitando mas del stock disponible','error');
+        }
+        else if (mensaje == '10')
+        {
+            swal('ERROR','Movimiento ilegal','error');
+        }
+
     </script>
   </body>
 </html>
