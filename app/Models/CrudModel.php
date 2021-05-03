@@ -15,6 +15,12 @@ class CrudModel extends Model
         $query ->insert($datos,$idDato);
         return $this->db->insertID($idDato);
     }
+    public function insertar_receta($datos)
+    {
+        $query =$this->db->table('recetas');
+        $query ->insert($datos);
+        return $this->db->insertID();
+    }
     public function ObtenerDato($data)
     {
         $datos = $this->db->table('stock_medicinas');

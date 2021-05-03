@@ -20,7 +20,7 @@
   </head>
   <body>
     <div class="container">
-        <h1><?php echo 'Hay '.$stock.' disponibles de'.$nombre; ?></h1>
+        <h1><?php echo 'Hay '.$stock.' disponibles de '.$nombre; ?></h1>
         <div class="row">
             <div class="col-sm-12">
                 <form method="POST" action="<?php echo site_url('/surtir')?>">
@@ -38,9 +38,24 @@
                     value="<?php echo $stock; ?>">
                     
                     <!-- medicamento -->
-                    <label for="Cantidad"></label>
+                    <label for="Cantidad">Cantidad</label>
                     <input type="number" name="Cantidad" id="Cantidad" class="form-control" 
                     value="<?php echo 'Hay '.$stock.' disponibles'; ?>">
+                    <!-- Codigo de receta -->
+                    <label for="CODIGO_RECETA">Codigo receta</label>
+                    <input type="number" name="CODIGO_RECETA" id="CODIGO_RECETA" class="form-control" 
+                    value="<?php echo 'Ejemplo 5589798552'; ?>">
+                    <!-- Doctor -->
+                    <label for="NOMBRE_DOCTOR">Doctor que receto</label>
+                    <input type="text" name="NOMBRE_DOCTOR" id="NOMBRE_DOCTOR" class="form-control" 
+                    value="<?php echo 'Nombre(s) Apellidos'; ?>">
+                    <!-- Institucion medica -->
+                    <label for="INSTITUCION_MED">Institucion</label>
+                    <input type="text" name="INSTITUCION_MED" id="INSTITUCION_MED" class="form-control" 
+                    value="<?php echo 'Ejemplo imss'; ?>">
+                    <input type="text" id="CDB_SURTIDO" name="CDB_SURTIDO" hidden="" 
+                    value="<?php echo $codigoBarras; ?>">
+
                     <br>
                     <button class="btn btn-warning">Guardar</button>
                 </form>

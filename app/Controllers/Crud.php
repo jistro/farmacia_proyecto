@@ -77,10 +77,19 @@ class Crud extends BaseController
 				"DESCRIPCION"  			=>$_POST['DESCRIPCION'],
 				"STOCK_DISPONIBLE"      =>$_POST['STOCK_DISPONIBLE']-$_POST['Cantidad']
 			];	
+			$datos_rec=	[
+				"CODIGO_RECETA"			=>$_POST['CODIGO_RECETA'],
+				"NOMBRE_DOCTOR"       	=>$_POST['NOMBRE_DOCTOR'],
+				"INSTITUCION_MED"      	=>$_POST['INSTITUCION_MED'],
+				"CDB_SURTIDO"  			=>$_POST['CDB_SURTIDO'],
+				"CANTIDAD_MED"      	=>$_POST['Cantidad']
+			];	
 			$idDato= $_POST['CODIGO_DE_BARRAS'];
 			$Crud = new CrudModel();
-			$respuesta = $Crud->actualizar($datos,$idDato);
-			if ($respuesta)
+			$respuesta0 = $Crud->actualizar($datos,$idDato);
+			$respuesta1 = $Crud->insertar_receta($datos_rec);
+
+			if ($respuesta0 && $respuesta1)
 			{
 				return redirect()->to(base_url().'/')->with('mensaje','6');
 			}
@@ -91,10 +100,18 @@ class Crud extends BaseController
 		}
 		else if (($_POST['STOCK_DISPONIBLE']-$_POST['Cantidad'])==0)
 		{
+			$datos_rec=	[
+				"CODIGO_RECETA"			=>$_POST['CODIGO_RECETA'],
+				"NOMBRE_DOCTOR"       	=>$_POST['NOMBRE_DOCTOR'],
+				"INSTITUCION_MED"      	=>$_POST['INSTITUCION_MED'],
+				"CDB_SURTIDO"  			=>$_POST['CDB_SURTIDO'],
+				"CANTIDAD_MED"      	=>$_POST['Cantidad']
+			];
 			$Crud= new CrudModel();
 			$data= ["CODIGO_DE_BARRAS"=>$_POST['CODIGO_DE_BARRAS']];
 			$respuesta = $Crud->eliminar($data);
-			if ($respuesta)
+			$respuesta1 = $Crud->insertar_receta($datos_rec);
+			if ($respuesta && $respuesta1)
 			{
 				return redirect()->to(base_url().'/')->with('mensaje','8');
 			}
