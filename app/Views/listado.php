@@ -19,35 +19,70 @@
                 <form method="POST" action=" <?php echo site_url('/crear') ?> ">
 
                     <!-- Codigo de barras-->
-                    <label for="codigo_de_barras">Codigo de barras </label>
-                    <input type="number" name="CODIGO_DE_BARRAS" id="CODIGO_BARRAS" class="form-control">
-                    <!-- Apellidos -->
-                    <label for="nombre_medicamento">Nombre de medicamento </label>
-                    <input type="text" name="NOMBRE_MEDICAMENTO" id="NOMBRE_MEDICAMENTO" class="form-control">
-                    <!-- Correo -->
-                    <label for="activo">Activo </label>
-                    <input type="text" name="ACTIVO" id="ACTIVO" class="form-control">
-                    <!-- Nombre-->
-                    <label for="tipo_medicamento">Tipo de medicamento </label>
-                    <input type="text" name="TIPO_MEDICAMENTO" id="TIPO_MEDICAMENTO" class="form-control">
-                    <!-- Apellidos -->
-                    <label for="descripcion">Decripcion</label>
-                    <input type="text" name="DESCRIPCION" id="DESCRIPCION" class="form-control">
-                    <!-- Correo -->
-                    <label for="stock_disponible">Stock disponible </label>
-                    <input type="number" name="STOCK_DISPONIBLE" id="STOCK_DISPONIBLE" class="form-control">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Codigo de barras</span>
+                        </div>
+                        <input type="number" name="CODIGO_DE_BARRAS" id="CODIGO_BARRAS" class="form-control" 
+                        placeholder="Ej. 123456789" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Nombre medicamento -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Nombre de medicamento</span>
+                        </div>
+                        <input type="text" name="NOMBRE_MEDICAMENTO" id="NOMBRE_MEDICAMENTO" class="form-control" 
+                        placeholder="Ej. Tylenol" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Activo -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Nombre de activo</span>
+                        </div>
+                        <input type="text" name="ACTIVO" id="ACTIVO" class="form-control" 
+                        placeholder="Ej. Paracetamol" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Tipo medicamento -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Tipo</span>
+                        </div>
+                        <input type="text" name="TIPO_MEDICAMENTO" id="TIPO_MEDICAMENTO" class="form-control" 
+                        placeholder="Ej. Patente" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Descripcion -->
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Descripcion</span>
+                        </div>
+                        <textarea class="form-control"  name="DESCRIPCION" id="DESCRIPCION" aria-label="With textarea"></textarea>
+                    </div>
                     <br>
+
+                    <!-- Stock -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Stock disponible</span>
+                        </div>
+                        <input type="number" name="STOCK_DISPONIBLE" id="STOCK_DISPONIBLE" class="form-control" 
+                        placeholder="Ej. 35" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+
                     <button class="btn btn-primary">Guardar</button>
                 </form>
             </div>
         </div>
         <hr>
+
+        
+
+
         <h2>Lista de medicamentos</h2>
         <div class="row">
             <div class="col-sm-12">
                 <div class="table table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead>
+                    <table class="table table-hover table-bordered " >
+                        <thead >
                             <tr>
                                 <th>Codigo de barras</th>
                                 <th>Nombre del medicamento</th>
@@ -55,24 +90,25 @@
                                 <th>Tipo</th>
                                 <th>Descripcion</th>
                                 <th>Stock disponible</th>
+                                <th colspan="3" class="thead-dark">Acciones</th>
                             </tr>
                             <?php foreach($datos as $key):?>
                                 <tr>
-                                    <th><?php echo $key-> CODIGO_DE_BARRAS      ?></th>
-                                    <th><?php echo $key-> NOMBRE_MEDICAMENTO    ?></th>
-                                    <th><?php echo $key-> ACTIVO                ?></th>
-                                    <th><?php echo $key-> TIPO_MEDICAMENTO      ?></th>
-                                    <th><?php echo $key-> DESCRIPCION           ?></th>
-                                    <th><?php echo $key-> STOCK_DISPONIBLE      ?></th>
-                                    <th>
+                                    <td><?php echo $key-> CODIGO_DE_BARRAS      ?></td>
+                                    <td><?php echo $key-> NOMBRE_MEDICAMENTO    ?></td>
+                                    <td><?php echo $key-> ACTIVO                ?></td>
+                                    <td><?php echo $key-> TIPO_MEDICAMENTO      ?></td>
+                                    <td><?php echo $key-> DESCRIPCION           ?></td>
+                                    <td><?php echo $key-> STOCK_DISPONIBLE      ?></td>
+                                    <td>
                                         <a href="<?php echo site_url('/obtenerDatos').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-warning btn-sm">Editar</a>
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         <a href="<?php echo site_url('/eliminar').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-danger btn-sm">Eliminar</a>
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         <a href="<?php echo site_url('/surtir_med').'/'.$key->CODIGO_DE_BARRAS?>" class="btn btn-primary btn-sm">Surtir</a>
-                                    </th>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </thead>

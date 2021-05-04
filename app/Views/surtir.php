@@ -38,21 +38,38 @@
                     value="<?php echo $stock; ?>">
                     
                     <!-- medicamento -->
-                    <label for="Cantidad">Cantidad</label>
-                    <input type="number" name="Cantidad" id="Cantidad" class="form-control" 
-                    value="<?php echo 'Hay '.$stock.' disponibles'; ?>">
+
+
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Cantidad</span>
+                      </div>
+                      <input type="number" name="Cantidad" id="Cantidad" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
                     <!-- Codigo de receta -->
-                    <label for="CODIGO_RECETA">Codigo receta</label>
-                    <input type="number" name="CODIGO_RECETA" id="CODIGO_RECETA" class="form-control" 
-                    value="<?php echo 'Ejemplo 5589798552'; ?>">
-                    <!-- Doctor -->
-                    <label for="NOMBRE_DOCTOR">Doctor que receto</label>
-                    <input type="text" name="NOMBRE_DOCTOR" id="NOMBRE_DOCTOR" class="form-control" 
-                    value="<?php echo 'Nombre(s) Apellidos'; ?>">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Codigo de receta</span>
+                      </div>
+                      <input type="number" name="CODIGO_RECETA" id="CODIGO_RECETA" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- Doctor --> 
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Doctor</span>
+                      </div>
+                      <input type="text" name="NOMBRE_DOCTOR" id="NOMBRE_DOCTOR" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
                     <!-- Institucion medica -->
-                    <label for="INSTITUCION_MED">Institucion</label>
-                    <input type="text" name="INSTITUCION_MED" id="INSTITUCION_MED" class="form-control" 
-                    value="<?php echo 'Ejemplo imss'; ?>">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Institucion medica</span>
+                      </div>
+                      <input type="text" name="INSTITUCION_MED" id="INSTITUCION_MED" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+
+                    
+
                     <input type="text" id="CDB_SURTIDO" name="CDB_SURTIDO" hidden="" 
                     value="<?php echo $codigoBarras; ?>">
 
